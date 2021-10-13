@@ -15,24 +15,22 @@ import { useCheckout } from '../../hooks/useCheckout';
 
 // ----------------------------------------------------------------------
 
-export default function RegisterForm({ handleSubmitForm }) {
+export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
   const RegisterSchema = Yup.object().shape({
-    firstName: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Obrigatório'),
-    lastName: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Obrigatório'),
+    firstName: Yup.string()
+      .min(2, 'Muito pequeno!')
+      .max(50, 'Muito grande!')
+      .required('Obrigatório'),
+    lastName: Yup.string()
+      .min(2, 'Muito pequeno!')
+      .max(50, 'Muito grande!')
+      .required('Obrigatório'),
     email: Yup.string().email('Email must be a valid email address').required('Obrigatório'),
     password: Yup.string().required('Obrigatório'),
     birthdate: Yup.string().required('Obrigatório'),
     cpf: Yup.string().required('Obrigatório')
   });
-
-  let handleSubmitFormik = '';
-
-  if (handleSubmitForm) handleSubmitFormik = handleSubmitForm;
-  else
-    handleSubmitFormik = (form) => {
-      console.log({ form, checkout });
-    };
 
   const formik = useFormik({
     initialValues: {
@@ -44,7 +42,9 @@ export default function RegisterForm({ handleSubmitForm }) {
       cpf: ''
     },
     validationSchema: RegisterSchema,
-    onSubmit: (form) => handleSubmitForm(form)
+    onSubmit: (e) => {
+      console.log(e, checkout);
+    }
   });
 
   const { errors, touched, handleSubmit, getFieldProps } = formik;

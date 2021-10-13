@@ -1,8 +1,12 @@
-import { Grid, Card, Button, CardHeader, Typography } from '@material-ui/core';
 import { useNavigate } from 'react-router-dom';
-import { useCheckout } from '../../hooks/useCheckout';
+// material
+import { Grid, Card, Button, CardHeader, Typography } from '@material-ui/core';
+
+// components
 import CheckoutCard from './CheckoutCard';
 import CheckoutSummary from './CheckoutSummary';
+// hooks
+import { useCheckout } from '../../hooks/useCheckout';
 
 export default () => {
   const { checkout, removeItem } = useCheckout();

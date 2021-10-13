@@ -2,12 +2,12 @@ import '@testing-library/jest-dom/extend-expect';
 import { render, screen, cleanup } from '@testing-library/react';
 import React from 'react';
 
-//providers
+// providers
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { CheckoutProvider } from '../../../contexts/checkoutContext';
 
-//components
+// components
 import PlanosCard from '../PlanosCard';
 import PlatformCard from '../PlataformCard';
 import CheckoutCard from '../../checkout/CheckoutCard';

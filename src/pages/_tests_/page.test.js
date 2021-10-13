@@ -10,8 +10,7 @@ import { CheckoutProvider } from '../../contexts/checkoutContext';
 //pages
 import Planos from '../planos';
 import Checkout from '../Checkout';
-import Register from '../Checkout';
-
+import Register from '../Register';
 
 const plataformas = [
   {
@@ -68,20 +67,20 @@ const renderWithRouter = (ui, { route = '/' } = {}) => {
 };
 
 it('Should render planos screen', () => {
-  renderWithRouter(<Planos />, { route: '/dashboard/planos/TBT01' });
+  renderWithRouter(<Planos />, { route: '/app/planos/TBT01' });
   expect(screen.getByText('Escolha seu plano')).toBeInTheDocument();
   expect(screen.getByText(planos[0].franquia)).toBeInTheDocument();
 });
 
 it('Should render checkout screen', () => {
-  renderWithRouter(<Checkout />, { route: '/dashboard/checkout' });
+  renderWithRouter(<Checkout />, { route: '/app/checkout' });
   expect(screen.getByText('Seu carrinho')).toBeInTheDocument();
   expect(screen.getByText('R$ ' + planos[0].valor)).toBeInTheDocument();
   expect(screen.getByText(planos[0].franquia)).toBeInTheDocument();
 });
 
 it('Should render register screen', async () => {
-  renderWithRouter(<Register />, { route: '/dashboard/register' });
+  renderWithRouter(<Register />, { route: '/app/register' });
   expect(screen.getByText('Seu pedido')).toBeInTheDocument();
   expect(screen.getByText('R$' + parseFloat(planos[0].valor))).toBeInTheDocument();
 });

@@ -5,6 +5,7 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { CheckoutProvider } from './contexts/checkoutContext';
+import userEvent from '@testing-library/user-event';
 
 import '@testing-library/jest-dom';
 afterEach(cleanup);
@@ -38,8 +39,6 @@ jest.mock('./hooks/useFetch', () => ({
   })
 }));
 
-
-
 describe('Check if app render correctly', () => {
   test('Should render first screen', () => {
     render(
@@ -55,7 +54,13 @@ describe('Check if app render correctly', () => {
     plataformas.forEach((plataforma) =>
       expect(screen.getByText(plataforma.nome)).toBeInTheDocument()
     );
+
+    const leftClick = { button: 0 };
+    userEvent.click(screen.getByText(/Tablet/i), leftClick);
+    expect(screen.getByText(/Escolha seu plano/i)).toBeInTheDocument();
+    planos.forEach((plano) => {
+      expect(screen.getByText(plano.franquia)).toBeInTheDocument();
+      expect(screen.getByText('R$ ' + plano.valor)).toBeInTheDocument();
+    });
   });
 });
-
-
